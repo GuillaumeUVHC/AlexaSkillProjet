@@ -1,0 +1,132 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "assistant",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": [
+                        "oublie",
+                        "annuler",
+                        "annule",
+                        "laisse tomber"
+                    ]
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": [
+                        "aide moi"
+                    ]
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "HelloWorldIntent",
+                    "slots": [],
+                    "samples": [
+                        "bonjour"
+                    ]
+                },
+                {
+                    "name": "HealthReportIntent",
+                    "slots": [
+                        {
+                            "name": "etat",
+                            "type": "etat",
+                            "samples": [
+                                "{etat}",
+                                "je me sens {etat}",
+                                "je vais {etat}"
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "je me sens {etat}",
+                        "envoyer etat",
+                        "je vais {etat}"
+                    ]
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                }
+            ],
+            "types": [
+                {
+                    "name": "etat",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "mal"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "bien"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        "dialog": {
+            "intents": [
+                {
+                    "name": "HealthReportIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "etat",
+                            "type": "etat",
+                            "confirmationRequired": true,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "confirmation": "Confirm.Slot.1366907726963.255775647548",
+                                "elicitation": "Elicit.Slot.1366907726963.255775647548"
+                            },
+                            "validations": [
+                                {
+                                    "type": "hasEntityResolutionMatch",
+                                    "prompt": "Slot.Validation.1274198423103.345617772369.14918706222"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "delegationStrategy": "ALWAYS"
+        },
+        "prompts": [
+            {
+                "id": "Elicit.Slot.1366907726963.255775647548",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "comment allez vous ?"
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Slot.1366907726963.255775647548",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "En êtes vous sur ?"
+                    }
+                ]
+            },
+            {
+                "id": "Slot.Validation.1274198423103.345617772369.14918706222",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "je ne comprends pas test"
+                    }
+                ]
+            }
+        ]
+    }
+}
